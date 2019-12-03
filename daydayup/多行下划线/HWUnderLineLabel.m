@@ -8,24 +8,23 @@
 
 #import "HWUnderLineLabel.h"
 #import <CoreText/CoreText.h>
-#import "Default.h"
 
 @implementation HWUnderLineLabel
 
 
-+(HWUnderLineLabel *)createLabelWithFrame:(CGRect)frame contentText:(NSString *)text font:(UIFont *)font textColor:(UIColor *)textColor underLineHeight:(float)underLineHeight underLineColor:(UIColor *)underLineColor lineSpace:(float)lineSpace
++(HWUnderLineLabel *)createLabelWithFrame:(CGRect)frame contentText:(nonnull NSString *)text textAligment:( NSTextAlignment )alignment font:(nonnull UIFont *)font textColor:(nonnull UIColor *)textColor underLineHeight:(float)underLineHeight underLineColor:(nonnull UIColor *)underLineColor lineSpace:(float)lineSpace
 {
 	HWUnderLineLabel *desLabel = [[HWUnderLineLabel alloc] initWithFrame:frame];
 	desLabel.textColor = textColor;
 	desLabel.numberOfLines = 0;
-	desLabel.textAlignment = NSTextAlignmentNatural;
+	desLabel.textAlignment = alignment;
 	desLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineSpacing = lineSpace;  //设置行间距
 	paragraphStyle.lineBreakMode = desLabel.lineBreakMode;
+	//阿拉伯语需要强制反向
 	paragraphStyle.alignment = desLabel.textAlignment;
-	paragraphStyle.alignment = Arabic ?NSTextAlignmentRight :desLabel.textAlignment;
 
 	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text];
 	[attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];

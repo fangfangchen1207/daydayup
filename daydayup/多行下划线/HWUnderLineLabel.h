@@ -24,12 +24,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///快速创建；
 /// @param frame frame
 /// @param text text
+/// @param alignment alignment
 /// @param font font
 /// @param textColor textColor
 /// @param underLineHeight 下划线高度
 /// @param underLineColor 下划线颜色
 /// @param lineSpace 行间距
-+ (HWUnderLineLabel *)createLabelWithFrame:(CGRect)frame contentText:(NSString *)text font:(UIFont *)font textColor:(UIColor *)textColor underLineHeight:(float)underLineHeight underLineColor:(UIColor *)underLineColor lineSpace:(float)lineSpace;
++ (HWUnderLineLabel *)createLabelWithFrame:(CGRect)frame contentText:(NSString *)text textAligment:(NSTextAlignment )alignment font:(UIFont *)font textColor:(UIColor *)textColor underLineHeight:(float)underLineHeight underLineColor:(UIColor *)underLineColor lineSpace:(float)lineSpace;
 
 @end
 
