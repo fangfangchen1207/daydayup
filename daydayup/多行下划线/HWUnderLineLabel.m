@@ -12,8 +12,16 @@
 @implementation HWUnderLineLabel
 
 
-+(HWUnderLineLabel *)createLabelWithFrame:(CGRect)frame contentText:(nonnull NSString *)text textAligment:( NSTextAlignment )alignment font:(nonnull UIFont *)font textColor:(nonnull UIColor *)textColor underLineHeight:(float)underLineHeight underLineColor:(nonnull UIColor *)underLineColor lineSpace:(float)lineSpace
++(HWUnderLineLabel *)createLabelWithFrame:(CGRect)frame
+							  contentText:(nonnull NSString *)text
+							 textAligment:( NSTextAlignment )alignment
+									 font:(nonnull UIFont *)font
+								textColor:(nonnull UIColor *)textColor
+						  underLineHeight:(float)underLineHeight
+						   underLineColor:(nonnull UIColor *)underLineColor
+								lineSpace:(float)lineSpace
 {
+	
 	HWUnderLineLabel *desLabel = [[HWUnderLineLabel alloc] initWithFrame:frame];
 	desLabel.textColor = textColor;
 	desLabel.numberOfLines = 0;
@@ -34,9 +42,15 @@
 	desLabel.lineSpace =lineSpace;
 	desLabel.underLineHeight = underLineHeight;
 	desLabel.underLineColor = underLineColor;
-	[desLabel sizeToFit];
+
+	//计算属性文本高度
+	CGRect paragraphRect = [attributedString boundingRectWithSize:CGSizeMake(CGRectGetWidth(desLabel.frame), MAXFLOAT)  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+	paragraphRect.origin = frame.origin;
+	desLabel.frame = paragraphRect;
+	
 	return desLabel;
 }
+
 - (instancetype)initWithFrame:(CGRect)frame{
 	if (self = [super initWithFrame:frame]) {
 		self.font = [UIFont systemFontOfSize:20];
@@ -76,7 +90,7 @@
 		lineBounds.origin.y += origins[lineIndex].y;
 		lineIndex++;
 		//设置线宽
-		CGContextSetLineWidth(ctx, 10.0);
+		CGContextSetLineWidth(ctx, self.underLineHeight);
 		CGContextMoveToPoint(ctx, lineBounds.origin.x, lineBounds.origin.y);
 		CGContextAddLineToPoint(ctx, lineBounds.origin.x+lineBounds.size.width, lineBounds.origin.y);
 		CGContextStrokePath(ctx);
