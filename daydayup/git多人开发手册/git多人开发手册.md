@@ -20,4 +20,4 @@ push完成提交到的只是自己的fork上。想要其他人看到，首先就
 
 下图是git常用命令
 
-![图片1](daydayup/git多人开发手册/18AD6D85-15C2-47AE-AF8E-174CFA41C638.png)
+![图片1](https://github.com/fangfangchen1207/daydayup/git多人开发手册/18AD6D85-15C2-47AE-AF8E-174CFA41C638.png)
